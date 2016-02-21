@@ -20,6 +20,7 @@ $(document).ready(function(){
 
     if (lastEmpty != undefined)
       appendToken(lastEmpty);
+    brains(columnId);
   });
 
 
@@ -158,33 +159,35 @@ function getCol(board, loc) {
 b = new board();
 
 
-$(".column").on("click", function(e){
-  console.log(e)
- var column = $(this).attr('id');
+function brains(column) {
 console.log(column)
- var playerId = (turnCounter % 2)
+
+var playerId = (turnCounter % 2)+1
 console.log('good')
 var coordinate = b.drop(column, playerId);
-console.log(coordinate)
+var coordinate2 = coordinate;
+
+
 var row = coordinate[0];
-console.log('coord')
-console.log(coordinate)
 var cols = getCol(b.grid(), coordinate);
 
 var frontSlash = forwardslash(coordinate, b.grid());
-var backSlash = backslash(coordinate, b.grid());
+console.log(coordinate)
+var notbackslash = backslash(coordinate, b.grid());
+console.log(coordinate)
 
-var collection = [cols, b.grid()[row], frontSlash, backSlash];
+
+var collection = [cols, b.grid()[row], frontSlash, notbackslash];
 
 var winner = b.connectFour(collection)
 console.log(winner)
 
 if(winner === 1)
-  alert('Belatrix Wins!!!!')
-else if(winner === 2)
   alert('Cthulhu Wins!!!')
+else if(winner === 2)
+  alert('Belatrix Wins!!!!')
 
- });
+ };
 
 });
 
