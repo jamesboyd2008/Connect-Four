@@ -4,9 +4,9 @@ $(document).ready(function(){
     var columnId = $(this).attr('id');
     var column = $('#' + columnId).children();
     if (turnCounter % 2 === 0){
-      $(column[0]).html('<div class="token1 hover"></div>')}
+      $(column[0]).html("<img class='token hover' src='public/images/bellatrix.jpg'>")}
     else
-      $(column[0]).html('<div class="token2 hover"></div>')
+      $(column[0]).html("<img class='token hover' src='public/images/cthulhu_icon.jpg'>")
 
   });
   $(".column").on("click", function(e){
@@ -36,9 +36,9 @@ turnCounter = 0
 
   function appendToken(lastEmpty){
     if (turnCounter % 2 === 0)
-    $(lastEmpty).append('<div class="token1"></div>');
+    $(lastEmpty).append("<img class='token' src='public/images/bellatrix.jpg'>");
   else
-    $(lastEmpty).append('<div class="token2"></div>');
+    $(lastEmpty).append("<img class='token' src='public/images/cthulhu_icon.jpg'>");
 
     $(lastEmpty).addClass('full');
     turnCounter += 1
