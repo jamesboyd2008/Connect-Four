@@ -1,4 +1,5 @@
-var forwardslash= function(position){
+var forwardslash= function(position, board){
+
   while (position[0] < 5 && position[1] > 0){
       position[0]++;
       position[1]--;
@@ -15,7 +16,8 @@ var forwardslash= function(position){
     return values;
   }
 
-var backslash= function(position){
+var backslash= function(position, board){
+
   while (position[0] > 0 && position[1] > 0){
       position[0]--;
       position[1]--;
@@ -31,6 +33,16 @@ var backslash= function(position){
     var values = collection.map(function(loc) {return board[loc[0]][loc[1]]});
     return values;
   }
+
+function getCol(board, loc) {
+  var column = [];
+  for (var i = 0; i < board.length; i++) {
+    column.push(board[i][loc[1]]);
+  }
+  return column;
+}
+
+
 
 
 
