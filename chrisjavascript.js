@@ -1,22 +1,15 @@
 
 
 var board = function() {
+
 	var grid = [
 		[0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 1, 2, 0],
-		[0, 0, 0, 2, 2, 2, 0],
-		[0, 0, 1, 2, 2, 2, 0]
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0]
 	];
-	//var grid = [
-	//	[0, 0, 0, 0, 0, 0, 0],
-	//	[0, 0, 0, 0, 0, 0, 0],
-	//	[0, 0, 0, 0, 0, 0, 0],
-	//	[0, 0, 0, 0, 0, 0, 0],
-	//	[0, 0, 0, 0, 0, 0, 0],
-	//	[0, 0, 0, 0, 0, 0, 0]
-	//];
 	this.connectFour = function (collections) {
 		oneCount = 0
 		twoCount = 0
@@ -109,14 +102,14 @@ function getCol(board, loc) {
   return column;
 }
 
-
-
-
-
 b = new board();
 
-var column = 6;
-var playerId = 2;
+$(".column").on("click", function(e){
+
+
+    var column = $(this).attr('id');
+
+ var playerId = (turnCounter % 2)
 
 var coordinate = b.drop(column, playerId);//
 var row = coordinate[0];
@@ -129,9 +122,17 @@ var backSlash = backslash(coordinate, b.grid());
 
 var collection = [cols, b.grid()[row], frontSlash, backSlash];
 
+b.connectFour(collection);
 
-console.log('b.connectFour(collection)');
-console.log(b.connectFour(collection));
+  });
+
+
+
+
+
+
+// console.log('b.connectFour(collection)');
+// console.log(b.connectFour(collection));
 
 //collections = [[1,0,1,0,2,1,1,1,1,0,1,2,2,0],[1,1,1,2,2,1,2],[1,2,1,2,2,1,2,1,2,2,1,1,2,2,2,2],[0,0,0,2,2,1,1,1]]
 //collections = [[1,0,1,0,2,1,1,1,1,2,2,0]];

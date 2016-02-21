@@ -1,36 +1,42 @@
 
 body{
-    background-color: blue;
+
   }
 
 .square {
-  width: 100px;
-  height: 100px;
+  width: 5em;
+  height: 5em;
 }
 
 .cell-image {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 5em;
+  height: 5em;
+
+
 }
 
 .column {
  /* position: absolute;*/
   display:inline-block;
+  margin:-2px;
 }
 
 #board{
-  padding-top: 150px;
+  padding-top: 7em;
   position: absolute;
+  min-width: 100em;
+  min-height: 150em;
+
 }
 
-.token1{
-  width: 100px;
-  height:100px;
+.token{
+  width: 5em;
+  height:5em;
   border-radius: 70%;
-  background-color: black;
   position: absolute;
- /* bottom:0px;*/
   z-index: -1;
-
 }
+
+
+
