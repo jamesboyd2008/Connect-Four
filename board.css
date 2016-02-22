@@ -27,7 +27,7 @@ body{
   position: absolute;
   min-width: 100em;
   min-height: 150em;
-
+  margin-left: 28%;
 }
 
 .token{
@@ -38,5 +38,23 @@ body{
   z-index: -1;
 }
 
+#button {
+  position: relative;
+  top: 2em;
+  margin-left: 8%;
+}
 
+#no {
+  position: relative;
+  text-align: center;
+  color: red;
+  top: -0.5em;
+  font-size: 40em;
+}
 
+#winner {
+  position: relative;
+  text-align: center;
+  color: red;
+  font-size: 20em;
+}

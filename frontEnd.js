@@ -1,4 +1,23 @@
 $(document).ready(function(){
+
+  // function removeNo() {
+  //   setTimeout(function(){ $(document).remove('body', '#no'); }, 2000);
+  // }
+
+  $('#button').on('click', function(e) {
+    e.preventDefault();
+    console.log("got here");
+    $(this).remove();
+    $('body').append('<h1 id="no">NO</h1>');
+    // removeNo();
+    $('body').prepend('<div id="remove-button">remove</div>');
+  });
+
+  $('body').on('click', '#remove-button', function(e) {
+    $(this).remove();
+    $('#no').remove();
+  })
+
   $(".column").hover(function(e){
     $('.hover').remove()
     var columnId = $(this).attr('id');
@@ -22,6 +41,7 @@ $(document).ready(function(){
       appendToken(lastEmpty);
     brains(columnId);
   });
+
 
 
 turnCounter = 0
@@ -123,6 +143,7 @@ var forwardslash= function(position, board){
       positionAlias[1]++;
       collection.push([ positionAlias[0], positionAlias[1] ]);
     };
+
     var values = collection.map(function(loc) {return board[ loc[0] ][ loc[1] ]});
     return values;
   }
@@ -140,11 +161,8 @@ var backslash= function(position, board){
       positionAlias[1]++;
       collection.push([ positionAlias[0], positionAlias[1] ]);
     };
+
     var values = collection.map(function(loc) {return board[ loc[0] ][ loc[1] ]});
-    // var values = [];
-    // collection.forEach(function(loc) {
-    //   values.push(board[loc[0]][loc[1]]);
-    // })
     return values;
   }
 
@@ -175,10 +193,13 @@ b = new board();
     var collection = [cols, b.grid()[row], frontSlash, notbackslash];
     var winner = b.connectFour(collection);
 
-    if(winner === 1)
-      alert('Cthulhu Wins!!!');
-    else if(winner === 2)
-      alert('Belatrix Wins!!!!');
+    if(winner === 1) {
+      // alert('Cthulhu Wins!!!');
+    $('body').prepend('<div id="winner">Cthulhu Wins!!!');
+    } else if(winner === 2) {
+      $('body').prepend('<div id="winner">Bellatrix Wins!!');
+      // alert('Bellatrix Wins!!!!');
+    };
   };
 
 });
