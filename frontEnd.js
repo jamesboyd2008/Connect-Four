@@ -111,38 +111,40 @@ function update(playerId, row, column) {
 
 }
 var forwardslash= function(position, board){
+  var positionAlias = [ position[0], position[1] ]
 
-  while (position[0] < 5 && position[1] > 0){
-      position[0]++;
-      position[1]--;
+  while (positionAlias[0] < 5 && positionAlias[1] > 0) {
+      positionAlias[0]++;
+      positionAlias[1]--;
     };
-    var collection = [position];
-    var row = position[0];
-    var col = position[1];
-    while (row > 0 && col<6){
-      row--;
-      col++;
-      collection.push([row, col]);
+    var collection = [ [ positionAlias[0], positionAlias[1] ] ];
+    while (positionAlias[0] > 0 && positionAlias[1] < 6) {
+      positionAlias[0]--;
+      positionAlias[1]++;
+      collection.push([ positionAlias[0], positionAlias[1] ]);
     };
-    var values = collection.map(function(loc) {return board[loc[0]][loc[1]]});
+    var values = collection.map(function(loc) {return board[ loc[0] ][ loc[1] ]});
     return values;
   }
 
 var backslash= function(position, board){
+  var positionAlias = [ position[0], position[1] ]
 
-  while (position[0] > 0 && position[1] > 0){
-      position[0]--;
-      position[1]--;
+  while (positionAlias[0] > 0 && positionAlias[1] > 0) {
+      positionAlias[0]--;
+      positionAlias[1]--;
     };
-    var collection = [position];
-    var row = position[0];
-    var col = position[1];
-    while (row < 5 && col <6){
-      row++;
-      col++;
-      collection.push([row, col]);
+    var collection = [ [ positionAlias[0], positionAlias[1] ] ];
+    while (positionAlias[0] < 5 && positionAlias[1] < 6) {
+      positionAlias[0]++;
+      positionAlias[1]++;
+      collection.push([ positionAlias[0], positionAlias[1] ]);
     };
-    var values = collection.map(function(loc) {return board[loc[0]][loc[1]]});
+    var values = collection.map(function(loc) {return board[ loc[0] ][ loc[1] ]});
+    // var values = [];
+    // collection.forEach(function(loc) {
+    //   values.push(board[loc[0]][loc[1]]);
+    // })
     return values;
   }
 
@@ -159,35 +161,25 @@ function getCol(board, loc) {
 b = new board();
 
 
-function brains(column) {
-console.log(column)
+  function brains(column) {
 
-var playerId = (turnCounter % 2)+1
-console.log('good')
-var coordinate = b.drop(column, playerId);
-var coordinate2 = coordinate;
+    var playerId = (turnCounter % 2) + 1;
+    var coordinate = b.drop(column, playerId);
 
-
-var row = coordinate[0];
-var cols = getCol(b.grid(), coordinate);
-
-var frontSlash = forwardslash(coordinate, b.grid());
-console.log(coordinate)
-var notbackslash = backslash(coordinate, b.grid());
-console.log(coordinate)
+    var row = coordinate[0];
+    var cols = getCol(b.grid(), coordinate);
+    var frontSlash = forwardslash(coordinate, b.grid());
+    var notbackslash = backslash(coordinate, b.grid());
 
 
-var collection = [cols, b.grid()[row], frontSlash, notbackslash];
+    var collection = [cols, b.grid()[row], frontSlash, notbackslash];
+    var winner = b.connectFour(collection);
 
-var winner = b.connectFour(collection)
-console.log(winner)
-
-if(winner === 1)
-  alert('Cthulhu Wins!!!')
-else if(winner === 2)
-  alert('Belatrix Wins!!!!')
-
- };
+    if(winner === 1)
+      alert('Cthulhu Wins!!!');
+    else if(winner === 2)
+      alert('Belatrix Wins!!!!');
+  };
 
 });
 
