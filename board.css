@@ -1,0 +1,60 @@
+
+body{
+
+  }
+
+.square {
+  width: 5em;
+  height: 5em;
+}
+
+.cell-image {
+  position: absolute;
+  width: 5em;
+  height: 5em;
+
+
+}
+
+.column {
+ /* position: absolute;*/
+  display:inline-block;
+  margin:-2px;
+}
+
+#board{
+  padding-top: 7em;
+  position: absolute;
+  min-width: 100em;
+  min-height: 150em;
+  margin-left: 28%;
+}
+
+.token{
+  width: 5em;
+  height:5em;
+  border-radius: 70%;
+  position: absolute;
+  z-index: -1;
+}
+
+#button {
+  position: relative;
+  top: 2em;
+  margin-left: 8%;
+}
+
+#no {
+  position: relative;
+  text-align: center;
+  color: red;
+  top: -0.5em;
+  font-size: 40em;
+}
+
+#winner {
+  position: relative;
+  text-align: center;
+  color: red;
+  font-size: 20em;
+}
