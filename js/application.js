@@ -136,6 +136,7 @@ var checkVertical = function(columnNumber) {
   return false;
 };
 
+//refator this function to accept an integer, representing a column
 var checkHorizontal = function(piece) {
   rowNumber = piece.row;
   var rowArray = [];
@@ -163,10 +164,14 @@ var checkHorizontal = function(piece) {
   return false;
 };
 
+
+
+
+
 //Tests. 'true' four times means our check functions work.
-board = allRedBoard;
-console.log(checkHorizontal(board[12]) == true);
-console.log(checkVertical(3) == true);
-board = stalemateBoard;
-console.log(checkHorizontal(board[12]) == false);
-console.log(checkVertical(3) == false);
+// board = allRedBoard;
+// console.log(checkHorizontal(board[12]) == true);
+// console.log(checkVertical(3) == true);
+// board = stalemateBoard;
+// console.log(checkHorizontal(board[12]) == false);
+// console.log(checkVertical(3) == false);
