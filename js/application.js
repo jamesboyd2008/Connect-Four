@@ -1,15 +1,15 @@
-var board = []  //42 piece object will occupy this
+var board = [];  //42 piece object will occupy this
 currentColor = "red";
 
-var Piece = function(){
-  this.color = null;
-  this.row = null;
-  this.column = null;
+var Piece = function(color, row, column){
+  this.color = color;
+  this.row = row;
+  this.column = column;
 };
 
 var fillBoard = function() {
   for(i = 0; i < 42; i++){
-    var newPiece = new Piece();
+    var newPiece = new Piece(null, null, null);
     board.push(newPiece);
   };
 };
@@ -36,54 +36,80 @@ var setRow = function() {
     }
     else{
       board[i].row = 5;
-    }
-  }
-}
+    };
+  };
+};
 
 setRow();
 
-piecePosition = 0
+piecePosition = 0;
 
 var setColumn = function() {
   for(i=0; i<6; i++) {
     for(j = 0; j < 7; j++) {
       board[piecePosition].column = j;
       piecePosition++;
-    }
-
-  }
-}
+    };
+  };
+};
 
 setColumn();
 
 
 var colorSwap = function (){
   currentColor = 'black';
-}
+};
 
 
 var checkVertical = function(columnNumber) {
-  var columnArray = []
+  var columnArray = [];
 
   for(i=0; i<42; i++) {
     if (board[i].column == columnNumber) {
-      columnArray.push(board[i])
-    }
-  }
+      columnArray.push(board[i]);
+    };
+  };
 
   for (i=0; i<columnArray.length; i++) {
-      counter = 0
+      counter = 0;
 
-      for (j=1; (j + i < columnArray.length && j < 4); j++) {
-        if ((columnArray[i].color == columnArray[i + j].color) && columnArray[i].color != null) {
-          counter++
-          if (counter == 3) {
-            return true;
-          }
-        } else {
-          break;
-        }
-      }
-    }
-    return false;
-}
+    for (j=1; (j + i < columnArray.length && j < 4); j++) {
+      if ((columnArray[i].color == columnArray[i + j].color) && columnArray[i].color != null) {
+        counter++;
+        if (counter == 3) {
+          return true;
+        };
+      } else {
+        break;
+      };
+    };
+  };
+  return false;
+};
+
+var checkHorizontal = function(piece) {
+  rowNumber = piece.row;
+  var rowArray = [];
+
+  for(i=0; i<42; i++) {
+    if (board[i].row == rowNumber) {
+      rowArray.push(board[i])
+    };
+  };
+
+  for (i=0; i<rowArray.length; i++) {
+      counter = 0;
+
+    for (j=1; (j + i < rowArray.length && j < 4); j++) {
+      if ((rowArray[i].color == rowArray[i + j].color) && rowArray[i].color != null) {
+        counter++;
+        if (counter == 3) {
+          return true;
+        };
+      } else {
+        break;
+      };
+    };
+  };
+  return false;
+};
