@@ -10,6 +10,24 @@ var Piece = function(color, row, column){
   this.column = column;
 };
 
+//board is from left to right, top to bottom.
+
+var drop = function(col) {
+  var piece = new Piece(null, null, null);
+  piece.column = col;
+  piece.color = currentColor;
+  colorSwap();
+  var tempColumn = []
+
+  board.forEach( function(piece){
+    if(piece.column == col){
+      tempColumn.push(piece);
+    }
+  });
+  piece.row = 5 - tempColumn.length
+  board.push(piece);
+};
+
 var fillBoard = function() {
   for(i = 0; i < 42; i++){
     var newPiece = new Piece(null, null, null);
