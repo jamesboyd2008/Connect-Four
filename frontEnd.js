@@ -23,9 +23,9 @@ $(document).ready(function(){
     var columnId = $(this).attr('id');
     var column = $('#' + columnId).children();
     if (turnCounter % 2 === 0){
-      $(column[0]).html("<img class='token hover' src='public/images/bellatrix.jpg'>")}
+      $(column[0]).html("<img class='token hover' src='imgs/black_chip.png'>")}
     else
-      $(column[0]).html("<img class='token hover' src='public/images/cthulhu_icon.jpg'>")
+      $(column[0]).html("<img class='token hover' src='imgs/red_chip.png'>")
 
   });
   $(".column").on("click", function(e){
@@ -57,9 +57,9 @@ turnCounter = 0
 
   function appendToken(lastEmpty){
     if (turnCounter % 2 === 0)
-    $(lastEmpty).append("<img class='token' src='public/images/bellatrix.jpg'>")
+    $(lastEmpty).append("<img class='token' src='imgs/black_chip.png'>")
     else
-    $(lastEmpty).append("<img class='token' src='public/images/cthulhu_icon.jpg'>");
+    $(lastEmpty).append("<img class='token' src='imgs/red_chip.png'>");
 
     $(lastEmpty).addClass('full');
     turnCounter += 1
@@ -195,9 +195,9 @@ b = new board();
 
     if(winner === 1) {
       // alert('Cthulhu Wins!!!');
-    $('body').prepend('<div id="winner">Cthulhu Wins!!!');
+    $('body').prepend('<div id="winner">Red Wins!!');
     } else if(winner === 2) {
-      $('body').prepend('<div id="winner">Bellatrix Wins!!');
+      $('body').prepend('<div id="winner">Black Wins!!');
       // alert('Bellatrix Wins!!!!');
     };
   };
