@@ -1,11 +1,21 @@
 // just call drop(), and feed it an integer, representing a column.
 // it will return one of three strings:
 // "Next Player's Move", "Red Wins!", or "Black Wins!"
+$(document).ready(function() {
+  board = [];  //42 piece objects will occupy this array.
+  fillBoard();
+  setRow();
+  setColumn();
+  currentColor = "red";
 
-board = [];  //42 piece objects will occupy this array.
-
-//if every position was filled with a red or black piece, there would be about
-// 4.4 trillion possible arrangements of pieces.
+  $("#1").on('click', drop(0));
+  $("#2").on('click', drop(1));
+  $("#3").on('click', drop(2));
+  $("#4").on('click', drop(3));
+  $("#5").on('click', drop(4));
+  $("#6").on('click', drop(5));
+  $("#7").on('click', drop(6));
+});
 
 //creates piece objects
 var Piece = function(color, row, column){
@@ -21,8 +31,6 @@ var fillBoard = function() {
     board.push(newPiece);
   };
 };
-
-fillBoard();
 
 //gives values to the row properties of each of the 42 elements on the board
 var setRow = function() {
@@ -44,12 +52,9 @@ var setRow = function() {
   };
 };
 
-setRow();
-
-piecePosition = 0;
-
 //gives values to the column properties of each of the 42 elements on the board
 var setColumn = function() {
+  piecePosition = 0;
   for(i=0; i<6; i++) {
     for(j = 0; j < 7; j++) {
       board[piecePosition].column = j;
@@ -57,10 +62,6 @@ var setColumn = function() {
     };
   };
 };
-
-setColumn();
-
-currentColor = "red";
 
 //changes the global variable, currentColor
 var colorSwap = function (){
@@ -198,6 +199,9 @@ var isGameOver = function(columnIndex) {
   // todo: what if stalemate?
   // todo: change "Next Player's Move" to Blue or Red Player's Move
   colorSwap();
+
+  $('h1').remove;
+  $('body').prepend("<h1>" + message + "</h1>");
   return message;
 }
 
@@ -224,6 +228,7 @@ var drop = function(col) {
 
   return isGameOver(col);
 };
+
 
 // //test zone
 // //==============================================================================
@@ -296,3 +301,5 @@ var drop = function(col) {
 // testDiagonal();
 // console.log('=======tests=======')
 // //==============================================================================
+//if every position was filled with a red or black piece, there would be about
+// 4.4 trillion possible arrangements of pieces.
