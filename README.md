@@ -1,5 +1,4 @@
 
-
 # Connect-Four
 
 James, Amaar, Chris, Thomas
@@ -26,4 +25,7 @@ After MVP
 * Computer AI
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/thomas
