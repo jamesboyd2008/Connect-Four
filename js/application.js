@@ -1,10 +1,23 @@
+// just call drop(), and feed it an integer, representing a column.
+// it will return one of three strings:
+// "Next Player's Move", "Red Wins!", or "Black Wins!"
+$(document).ready(function() {
+  board = [];  //42 piece objects will occupy this array.
+  fillBoard();
+  setRow();
+  setColumn();
+  currentColor = "red";
 
+  $("#1").on('click', drop(0));
+  $("#2").on('click', drop(1));
+  $("#3").on('click', drop(2));
+  $("#4").on('click', drop(3));
+  $("#5").on('click', drop(4));
+  $("#6").on('click', drop(5));
+  $("#7").on('click', drop(6));
+});
 
-var board = [];  //42 piece object will occupy this
-//if every position was filled with a red or black piece, there would be about
-// 4.4 trillion possible arrangements of pieces.
-
-currentColor = "red";
+//creates piece objects
 var Piece = function(color, row, column){
   this.color = color;
   this.row = row;
@@ -12,7 +25,6 @@ var Piece = function(color, row, column){
 };
 
 //fills the board with null value pieces
-
 var fillBoard = function() {
   for(i = 0; i < 42; i++){
     var newPiece = new Piece(null, null, null);
@@ -20,61 +32,7 @@ var fillBoard = function() {
   };
 };
 
-
-
-fillBoard();
-
-//this is just for tests.
-var generateTestBoards = function() {
-  var colors = ['red', 'black'];
-  allRedBoard = [
-                  [],
-                  [],
-                  [],
-                  [],
-                  [],
-                  []
-                ];
-  allBlackBoard = [
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    []
-                  ];
-  var testBoards = [allRedBoard, allBlackBoard];
-
-  for(i = 0; i < 2; i++) {
-
-    for(j = 0; j < 6; j++) {
-
-      for(k = 0; k < 7; k++) {
-        var newPiece = new Piece(colors[i], j, k); //color, row, column
-        testBoards[i][j].push(newPiece);
-      };
-    };
-  };
-
-  var r = allRedBoard;
-  var b = allBlackBoard;
-  stalemateBoard = [
-                [b[0][0], r[0][1], b[0][2], b[0][3], b[0][4], r[0][5], b[0][6]],
-                [r[1][0], b[1][1], r[1][2], r[1][3], r[1][4], b[1][5], r[1][6]],
-                [b[2][0], r[2][1], b[2][2], b[2][3], b[2][4], r[2][5], b[2][6]],
-                [r[3][0], b[3][1], r[3][2], r[3][3], r[3][4], b[3][5], r[3][6]],
-                [b[4][0], r[4][1], b[4][2], b[4][3], b[4][4], r[4][5], b[4][6]],
-                [r[5][0], b[5][1], r[5][2], r[5][3], r[5][4], b[5][5], r[5][6]]
-                   ];
-  stalemateBoard = [].concat.apply([], stalemateBoard);
-  allRedBoard = [].concat.apply([], allRedBoard); //thes two lines flatten the arrays
-  allBlackBoard = [].concat.apply([], allBlackBoard);
-};
-
-//just for tests
-generateTestBoards();
-
-
+//gives values to the row properties of each of the 42 elements on the board
 var setRow = function() {
 
   for (i = 0; i < 42; i++) {
@@ -96,9 +54,7 @@ var setRow = function() {
 
 //gives values to the column properties of each of the 42 elements on the board
 var setColumn = function() {
-
   piecePosition = 0;
-
   for(i=0; i<6; i++) {
     for(j = 0; j < 7; j++) {
       board[piecePosition].column = j;
@@ -107,14 +63,7 @@ var setColumn = function() {
   };
 };
 
-
-
-setColumn();
-
-
-
 //changes the global variable, currentColor
-
 var colorSwap = function (){
   if (currentColor == 'red') {
     currentColor = 'black';
@@ -123,12 +72,7 @@ var colorSwap = function (){
   }
 };
 
-
-
-
-
 //cheks the column with the given index for a 4-in-a-row
-
 var checkVertical = function(columnNumber) {
   var columnArray = [];
 
@@ -167,7 +111,6 @@ var checkHorizontal = function(columnIndex) {
 
 
   rowNumber = 6 - tempColumn.length;
-
   var rowArray = [];
 
   for(i=0; i<42; i++) {
